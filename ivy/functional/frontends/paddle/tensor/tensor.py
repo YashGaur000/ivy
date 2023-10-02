@@ -561,6 +561,12 @@ class Tensor:
     @with_unsupported_dtypes({"2.5.1 and below": "bfloat16"}, "paddle")
     def fmin(self, y, name=None):
         return paddle_frontend.fmin(self, y)
+    
+    @with_supported_dtypes(
+        {"2.5.1 and below": ("bool", "float32", "float64", "int32", "int64")}, "paddle"
+    )
+    def gather(self, indicies, axis=None, name=None):
+        return paddle_frontend.gather(self, indicies, axis=0)
 
     @with_supported_dtypes(
         {"2.5.1 and below": ("float32", "float64", "int32", "int64")}, "paddle"
